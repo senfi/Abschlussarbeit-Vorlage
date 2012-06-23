@@ -1,0 +1,12 @@
+\section{Quellcode-Auszüge}\label{app:sourcecode}
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[caption={Verifizierung der IP-Adresse mit einem regulären Ausdruck},label={list:regex}]
+Regex reg = new Regex(@"^149.201.([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]| 25[0-5]).([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\$");
+if (!reg.IsMatch(TextBox_IP.Text)) {
+	Fehlermeldung im Formular ausgeben
+} else {
+	Session["IP"] =  TextBox_IP.Text;
+	//Starte hier die Suche
+}
+\end{lstlisting}
+\end{minipage}

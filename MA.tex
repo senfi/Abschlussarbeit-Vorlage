@@ -1,0 +1,106 @@
+%	Dies ist eine Vorlage von Tobias Banaszak
+%	tobias.banaszak@gmail.com
+%	Sie wurde 2010 erstellt und mehrfach verändert und angepasst.
+%	Zum kompilieren wurde pdfLaTeX benutzt. 
+%	Einen Umschlag/Einband liefert diese Vorlage nicht, da die Schriftart der FH Aachen nicht mal so eben in *TeX genutzt werden kann und es genau dafür in diesem Fall schon eine Indesign-Vorlage gibt
+%
+\documentclass[
+12pt,								% Schriftgre (12pt, 11pt (Standard))
+oneside,							% einseitiges Layout
+listof=flat,						% setzt z.B. das Abbvz neu, falls die Nummern in die Beschreibung rein ragt
+%draft,								% überlange Zeilen in Ausgabe kennzeichnen, setzt keine Bilder un Listings.
+numbers=noenddot,		% macht aus der Überschrift 1.1. den letzten Punkt weg
+%abstracton						%setzt "abstact"/"zusammenfassung"
+]{scrartcl}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pakete einbinden etc...
+\input{pre.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%für den PDF-Reader
+\hypersetup{
+	pdfpagelayout=TwoPageRight,	%erste Seite ist Titelseite
+	pdfstartview=Fit,
+	pdfauthor={Vorname Nachname}, 
+	pdftitle={Titel Titel Titel},
+	pdfsubject={Masterarbeit},
+	pdfkeywords={Masterarbeit | Stichwort| Stichwörter | blabla}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+\begin{document}
+%	Standartumgebung für Codelistings setzen
+\lstset{showstringspaces=false,frame=lines,breaklines=true,language=[Sharp]C,numberbychapter=true,captionpos=b,prebreak={\Righttorque},basicstyle=\footnotesize}
+%
+% Seitengeometrie für den Titelseite & Verzeichnisse anpassen
+\newgeometry{left=2.7cm,right=2.7cm,top=3.05cm,bottom=3.3cm,marginparsep=0mm,marginparwidth=0.0cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Titelseite
+\begin{titlepage}%
+\input{Deckblatt.tex}%
+\end{titlepage}%
+\onehalfspacing
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Erzeugen von Verzeichnissen
+\renewcommand{\listfigurename}{Abbildungsverzeichnis}
+\markright{}%gegen die zweite zeile im header
+\tableofcontents			% Inhaltsverzeichnis
+\newpage
+%
+\markright{}					% gegen die zweite zeile im header
+%\listoftables				% Tabellenverzeichnis
+\listoffigures				% Abbildungsverzeichnis
+\newpage
+%\thispagestyle{empty}
+\input{Abkuerzungsverz.tex}
+\newpage
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Der Text
+\restoregeometry			% Seitengeometrie zurück setzen
+%\blinddocument
+%
+%	Motivation
+\input{Motivation.tex}
+%
+%	Stand der Technik
+\input{SdT.tex}
+%
+%	Fazit und Ausblick
+\input{Ausblick}%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Der Anhang
+\appendix							% Beginn des Anhangs
+%geometrie wechseln
+\newgeometry{left=2.7cm,right=2.7cm,top=3.05cm,bottom=3.3cm,marginparsep=0mm,marginparwidth=0.0cm}
+\section*{Anhang}
+\markboth{Anhang}{}			% Header aufhübschen
+%
+%
+\input{Quellcode.tex}
+%
+%
+\section{Quellcode und Dokumentation}
+Dieser Bachelorarbeit liegt eine CD bei. Da sind großartige Dinge drauf.
+%
+%
+%	Lieraturverz.
+\markboth{Literatur}{}
+\markright{}
+\bibliographystyle{alpha1}
+\markboth{Literatur}{}
+\bibliography{BA_Bib}
+%
+%
+\pagebreak
+%Erklärung
+\input{Erklaerung.tex}
+\thispagestyle{empty}			%keine Seitenzahlen
+\end{document}
